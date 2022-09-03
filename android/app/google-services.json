@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1081047324653",
+    "project_id": "emailpasswordaut-7b451",
+    "storage_bucket": "emailpasswordaut-7b451.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081047324653:android:7e1a5f36c6eb56ea5879e4",
+        "android_client_info": {
+          "package_name": "com.example.baverage_login_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081047324653-dksfkcfd5kp0i9637m873jvhjjs7irt7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChe5-ts44Hx7ner-d96O6k2Q_iefgb-HQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081047324653-dksfkcfd5kp0i9637m873jvhjjs7irt7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
