@@ -184,29 +184,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
-      appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.blue,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              })),
-      body: Center(
-        // decoration: BoxDecoration(
-        //   image: DecorationImage(
-        // image: AssetImage("assets/water_splash.png"),
-        // fit: BoxFit.cover,
-        // )),
-        child: SingleChildScrollView(
-          child: Container(
-            // decoration: BoxDecoration(),
-            // color: Color(0xffffffff),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("assets/water_splash.png"),
+          fit: BoxFit.cover,
+        )),
+        child: Center(
+          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(36.0),
               child: Form(
@@ -215,8 +200,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset("assets/water_splash.png"),
-                    SizedBox(height: 20),
+                    SizedBox(height: 2),
                     firstNameField,
                     SizedBox(height: 20),
                     secondNameField,
