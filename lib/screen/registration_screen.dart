@@ -44,6 +44,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.account_circle),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "First Name",
@@ -66,6 +68,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.account_circle),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Second Name",
@@ -95,6 +99,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.mail),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Email",
@@ -122,6 +128,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.vpn_key),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
@@ -147,6 +155,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         },
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           prefixIcon: Icon(Icons.vpn_key),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
@@ -158,7 +168,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final signupButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Colors.blueAccent,
+      color: Color(hexColor('#6666ff')),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
@@ -174,8 +184,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffffffff),
       appBar: AppBar(
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
@@ -187,9 +198,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Navigator.of(context).pop();
               })),
       body: Center(
+        // decoration: BoxDecoration(
+        //   image: DecorationImage(
+        // image: AssetImage("assets/water_splash.png"),
+        // fit: BoxFit.cover,
+        // )),
         child: SingleChildScrollView(
           child: Container(
-            color: Colors.white,
+            // decoration: BoxDecoration(),
+            // color: Color(0xffffffff),
             child: Padding(
               padding: const EdgeInsets.all(36.0),
               child: Form(
@@ -198,15 +215,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                        height: 200,
-                        child: Image.asset(
-                          "asset/login_image.png",
-                          fit: BoxFit.contain,
-                        )),
-                    SizedBox(
-                      height: 45,
-                    ),
+                    Image.asset("assets/water_splash.png"),
                     SizedBox(height: 20),
                     firstNameField,
                     SizedBox(height: 20),
@@ -261,5 +270,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         (context),
         MaterialPageRoute(builder: (context) => Homescreen()),
         (route) => false);
+  }
+
+  int hexColor(String color) {
+    //adding prefix
+    String newColor = '0xff' + color;
+    //removing # sign
+    newColor = newColor.replaceAll('#', '');
+    //converting it to the integer
+    int finalColor = int.parse(newColor);
+    return finalColor;
   }
 }

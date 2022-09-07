@@ -36,16 +36,20 @@ class _HomescreenState extends State<Homescreen> {
         centerTitle: true,
       ),
       body: Center(
+        /* body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("assets/water_splash.png"),
+          // fit: BoxFit.cover,
+        )),*/
+
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                  height: 150,
-                  child: Image.asset("asset/login_image.png",
-                      fit: BoxFit.contain)),
+              Image.asset("assets/water_splash.png"),
               Text(
                 "welcome Back",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

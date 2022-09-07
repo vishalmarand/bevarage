@@ -3,6 +3,7 @@ import 'package:baverage_login_system/screen/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class login_Screen extends StatefulWidget {
   const login_Screen({super.key});
@@ -14,12 +15,27 @@ class login_Screen extends StatefulWidget {
 class _login_ScreenState extends State<login_Screen> {
   final _formkey = GlobalKey<FormState>();
 
-  final TextEditingController emailcontroller = new TextEditingController();
-  final TextEditingController passwordcontroller = new TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
 
   final _auth = FirebaseAuth.instance;
 
   String? errorMessage;
+
+  void signIn(String email, String password) async {
+    if (_formkey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Login Successful"),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Homescreen())),
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +59,11 @@ class _login_ScreenState extends State<login_Screen> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-            prefixIcon: Icon(Icons.mail),
+            fillColor: Colors.white,
+            filled: true,
+            prefixIcon: Icon(Icons.account_circle),
             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-            hintText: "Email",
+            hintText: "Enter Your User Name",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             )));
@@ -70,9 +88,16 @@ class _login_ScreenState extends State<login_Screen> {
         },
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            suffixIcon: IconButton(
+                onPressed: () => {},
+                icon: Icon(
+                  Icons.visibility_off,
+                )),
             prefixIcon: Icon(Icons.vpn_key),
             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-            hintText: "Password",
+            hintText: "Enter Your Password",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             )));
@@ -80,7 +105,7 @@ class _login_ScreenState extends State<login_Screen> {
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Color.fromARGB(255, 54, 71, 100),
+      color: Color(hexColor('#6666ff')),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
@@ -96,79 +121,83 @@ class _login_ScreenState extends State<login_Screen> {
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           )),
     );
-    return Scaffold(
-        body: Center(
-            child: SingleChildScrollView(
-                child: Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(36.0),
-                      child: Form(
-                          key: _formkey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              SizedBox(
-                                  height: 200,
-                                  child: Image.asset(
-                                    "asset/login_image.png",
-                                    fit: BoxFit.contain,
-                                  )),
-                              SizedBox(
-                                height: 45,
-                              ),
-                              emailfield,
-                              SizedBox(
-                                height: 25,
-                              ),
-                              passwordfield,
-                              SizedBox(
-                                height: 35,
-                              ),
-                              loginButton,
-                              SizedBox(
-                                height: 45,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text("Don't have account?"),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  RegistrationScreen()));
-                                    },
-                                    child: Text(
-                                      "SignUp",
-                                      style: TextStyle(
-                                          color: Colors.blueAccent,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 15),
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          )),
-                    )))));
-  }
 
-  void signIn(String email, String password) async {
-    if (_formkey.currentState!.validate()) {
-      await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((uid) => {
-                Fluttertoast.showToast(msg: "Login Successful"),
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Homescreen())),
-              })
-          .catchError((e) {
-        Fluttertoast.showToast(msg: e!.message);
-      });
-    }
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage("assets/water_splash.png"),
+          fit: BoxFit.cover,
+        )),
+        child: Center(
+            child: SingleChildScrollView(
+                child: Padding(
+          padding: const EdgeInsets.all(36.0),
+          child: Form(
+              key: _formkey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  //add google fonts and colour code
+                  Padding(
+                      padding: const EdgeInsets.all(80.0),
+                      child: Text("Login",
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.roboto(
+                              fontSize: 42,
+                              fontWeight: FontWeight.bold,
+                              color: Color(hexColor('#6666ff'))))),
+                  emailfield,
+                  SizedBox(
+                    height: 25,
+                  ),
+                  passwordfield,
+                  SizedBox(
+                    height: 30,
+                  ),
+                  //add forgot button and gap
+                  Text("Forgot Password"),
+                  SizedBox(height: 10),
+                  loginButton,
+                  SizedBox(
+                    height: 45,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("Don't have account?"),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegistrationScreen()));
+                        },
+                        child: Text(
+                          "SignUp",
+                          style: TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              )),
+        ))),
+      ),
+    );
   }
+}
+
+int hexColor(String color) {
+  //adding prefix
+  String newColor = '0xff' + color;
+  //removing # sign
+  newColor = newColor.replaceAll('#', '');
+  //converting it to the integer
+  int finalColor = int.parse(newColor);
+  return finalColor;
 }
