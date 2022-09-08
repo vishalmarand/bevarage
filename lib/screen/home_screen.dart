@@ -31,47 +31,45 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("welcome"),
-        centerTitle: true,
-      ),
-      body: Center(
-        /* body: Container(
+      body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage("assets/water_splash.png"),
-          // fit: BoxFit.cover,
-        )),*/
-
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Image.asset("assets/water_splash.png"),
-              Text(
-                "welcome Back",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          fit: BoxFit.cover,
+        )),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  //Image.asset("assets/water_splash.png"),
+                  Text(
+                    "welcome Back",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("${loggedInUser.firstName} ${loggedInUser.secondName}",
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500)),
+                  Text("${loggedInUser.email}",
+                      style: TextStyle(
+                          color: Colors.black54, fontWeight: FontWeight.w500)),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  ActionChip(
+                      label: Text("Logout"),
+                      onPressed: () {
+                        logout(context);
+                      }),
+                ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text("${loggedInUser.firstName} ${loggedInUser.secondName}",
-                  style: TextStyle(
-                      color: Colors.black54, fontWeight: FontWeight.w500)),
-              Text("${loggedInUser.email}",
-                  style: TextStyle(
-                      color: Colors.black54, fontWeight: FontWeight.w500)),
-              SizedBox(
-                height: 15,
-              ),
-              ActionChip(
-                  label: Text("Logout"),
-                  onPressed: () {
-                    logout(context);
-                  }),
-            ],
+            ),
           ),
         ),
       ),

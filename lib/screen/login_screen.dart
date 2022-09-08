@@ -56,6 +56,7 @@ class _login_ScreenState extends State<login_Screen> {
         //validator: (){}
         onSaved: (value) {
           emailcontroller.text = value!;
+          bool _obsecureText = true;
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -83,19 +84,15 @@ class _login_ScreenState extends State<login_Screen> {
         },
 
         //validator: (){}
-        onSaved: (value) {
-          passwordcontroller.text = value!;
-        },
+
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
             fillColor: Colors.white,
             filled: true,
-            suffixIcon: IconButton(
-                onPressed: () => {},
-                icon: Icon(
-                  Icons.visibility_off,
-                )),
             prefixIcon: Icon(Icons.vpn_key),
+            suffixIcon: GestureDetector(
+              onTap: () {},
+            ),
             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
             hintText: "Enter Your Password",
             border: OutlineInputBorder(
