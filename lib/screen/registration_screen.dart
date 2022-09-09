@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -181,7 +182,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             signUp(emailEditingController.text, passwordEditingController.text);
           },
           child: Text(
-            "signupButton",
+            "Sign Up",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
@@ -205,6 +206,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.all(80.0),
+                        child: Text("Sign Up",
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.roboto(
+                                fontSize: 42,
+                                fontWeight: FontWeight.bold,
+                                color: Color(hexColor('#6666ff'))))),
                     SizedBox(height: 2),
                     firstNameField,
                     SizedBox(height: 20),
