@@ -13,6 +13,7 @@ class login_Screen extends StatefulWidget {
 }
 
 class _login_ScreenState extends State<login_Screen> {
+  bool _isSecurePassword = true;
   final _formkey = GlobalKey<FormState>();
 
   TextEditingController emailcontroller = TextEditingController();
@@ -56,9 +57,9 @@ class _login_ScreenState extends State<login_Screen> {
         //validator: (){}
         onSaved: (value) {
           emailcontroller.text = value!;
-          bool _obsecureText = true;
         },
         textInputAction: TextInputAction.next,
+        // obscureText: _isSecurePassword,
         decoration: InputDecoration(
             fillColor: Colors.white,
             filled: true,
@@ -72,7 +73,7 @@ class _login_ScreenState extends State<login_Screen> {
     final passwordfield = TextFormField(
         autofocus: false,
         controller: passwordcontroller,
-        obscureText: true,
+        //obscureText: true,
         validator: (value) {
           RegExp regex = new RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
@@ -82,19 +83,15 @@ class _login_ScreenState extends State<login_Screen> {
             return ("Enter Valid Password(Min. 6 Character)");
           }
         },
-
-        //validator: (){}
-
         textInputAction: TextInputAction.done,
+        obscureText: _isSecurePassword,
         decoration: InputDecoration(
             fillColor: Colors.white,
             filled: true,
             prefixIcon: Icon(Icons.vpn_key),
-            suffixIcon: GestureDetector(
-              onTap: () {},
-            ),
             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
             hintText: "Enter Your Password",
+            suffixIcon: togglePassword(),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             )));
@@ -107,8 +104,6 @@ class _login_ScreenState extends State<login_Screen> {
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
-            //Navigator.pushReplacement(
-            // context, MaterialPageRoute(builder: (context) => Homescreen()));
             signIn(emailcontroller.text, passwordcontroller.text);
           },
           child: Text(
@@ -185,6 +180,19 @@ class _login_ScreenState extends State<login_Screen> {
               )),
         ))),
       ),
+    );
+  }
+
+  Widget togglePassword() {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          _isSecurePassword = !_isSecurePassword;
+        });
+      },
+      icon: _isSecurePassword
+          ? Icon(Icons.visibility_off)
+          : Icon(Icons.visibility),
     );
   }
 }

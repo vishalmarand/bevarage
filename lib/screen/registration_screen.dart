@@ -13,6 +13,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  bool _isSecurePassword = true;
   final _auth = FirebaseAuth.instance;
 
   final _formKey = GlobalKey<FormState>();
@@ -113,7 +114,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final passwordField = TextFormField(
         autofocus: false,
         controller: passwordEditingController,
-        obscureText: true,
+        // obscureText: true,
         validator: (value) {
           RegExp regex = new RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
@@ -127,12 +128,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           firstNameEditingController.text = value!;
         },
         textInputAction: TextInputAction.next,
+        obscureText: _isSecurePassword,
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
           prefixIcon: Icon(Icons.vpn_key),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
+          suffixIcon: togglePassword(),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -142,7 +145,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final confirmPasswordField = TextFormField(
         autofocus: false,
         controller: confirmPasswordEditingController,
-        obscureText: true,
+        //obscureText: true,
         validator: (value) {
           if (confirmPasswordEditingController.text !=
               passwordEditingController.text) {
@@ -154,12 +157,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           confirmPasswordEditingController.text = value!;
         },
         textInputAction: TextInputAction.done,
+        obscureText: _isSecurePassword,
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
           prefixIcon: Icon(Icons.vpn_key),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
+          suffixIcon: togglePassword(),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -256,13 +261,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         (route) => false);
   }
 
-  int hexColor(String color) {
-    //adding prefix
-    String newColor = '0xff' + color;
-    //removing # sign
-    newColor = newColor.replaceAll('#', '');
-    //converting it to the integer
-    int finalColor = int.parse(newColor);
-    return finalColor;
+  Widget togglePassword() {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          _isSecurePassword = !_isSecurePassword;
+        });
+      },
+      icon: _isSecurePassword
+          ? Icon(Icons.visibility_off)
+          : Icon(Icons.visibility),
+    );
   }
+}
+
+int hexColor(String color) {
+  //adding prefix
+  String newColor = '0xff' + color;
+  //removing # sign
+  newColor = newColor.replaceAll('#', '');
+  //converting it to the integer
+  int finalColor = int.parse(newColor);
+  return finalColor;
 }
