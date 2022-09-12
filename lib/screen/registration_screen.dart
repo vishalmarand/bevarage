@@ -174,7 +174,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final signupButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Color(hexColor('#6666ff')),
+      color: Color(hexColor('#1B70D6')),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
@@ -213,7 +213,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             style: GoogleFonts.roboto(
                                 fontSize: 42,
                                 fontWeight: FontWeight.bold,
-                                color: Color(hexColor('#6666ff'))))),
+                                color: Color(hexColor('#1B70D6'))))),
                     SizedBox(height: 2),
                     firstNameField,
                     SizedBox(height: 20),

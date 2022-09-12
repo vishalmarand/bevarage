@@ -13,13 +13,14 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   User? user = FirebaseAuth.instance.currentUser;
+
   UserModel loggedInUser = UserModel();
 
   @override
   void initState() {
     super.initState();
     FirebaseFirestore.instance
-        .collection("users")
+        .collection("user")
         .doc(user!.uid)
         .get()
         .then((value) {

@@ -99,7 +99,7 @@ class _login_ScreenState extends State<login_Screen> {
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Color(hexColor('#6666ff')),
+      color: Color(hexColor('#1B70D6')),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
@@ -139,7 +139,7 @@ class _login_ScreenState extends State<login_Screen> {
                           style: GoogleFonts.roboto(
                               fontSize: 42,
                               fontWeight: FontWeight.bold,
-                              color: Color(hexColor('#6666ff'))))),
+                              color: Color(hexColor('#1B70D6'))))),
                   emailfield,
                   SizedBox(
                     height: 25,
@@ -168,8 +168,8 @@ class _login_ScreenState extends State<login_Screen> {
                         },
                         child: Text(
                           "SignUp",
-                          style: TextStyle(
-                              color: Colors.blueAccent,
+                          style: GoogleFonts.roboto(
+                              color: Color(hexColor('#1B70D6')),
                               fontWeight: FontWeight.w900,
                               fontSize: 15),
                         ),
